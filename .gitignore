@@ -1,4 +1,17 @@
+# langgraph build/venv stuff
 langgraph/
-*.env
-temp/
 */__pycache__/
+
+# envs
+*.env
+
+# temp dirs
+temp/
+
+# sqlite database artifacts
+*.db
+*.db-shm
+*.db-wal
+
+# other
+.DS_Store
