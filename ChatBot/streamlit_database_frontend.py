@@ -10,6 +10,8 @@ def generate_thread_id():
     return thread_id
 
 def reset_chat():
+    if st.session_state["message_history"] == []:
+        return
     thread_id = generate_thread_id()
     st.session_state["thread_id"] = thread_id
     add_thread(st.session_state["thread_id"])
