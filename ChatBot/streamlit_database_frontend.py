@@ -2,6 +2,9 @@ import streamlit as st
 from langchain_core.messages import HumanMessage
 from langgraph_database_backend import chatbot, retrieve_all_threads
 import uuid
+import os
+
+os.environ["LANGCHAIN_PROJECT"] = "Streamlit-ChatBot"
 
 # **************************** Utility Functions ****************************
 
@@ -73,7 +76,15 @@ if input:
     with st.chat_message("user"):
         st.markdown(f"**You:** {input}")
 
-    CONFIG = {"configurable": {"thread_id": st.session_state["thread_id"]}}
+    # CONFIG = {"configurable": {"thread_id": st.session_state["thread_id"]}}
+
+    CONFIG = {
+        "configurable": {"thread_id": st.session_state["thread_id"]},
+        "metadata": {
+            "thread_id": st.session_state["thread_id"]
+        },
+        "run_name": "chat_turn"
+    }
 
     # st.session_state["message_history"].append({"role": "assistant", "content": response_message})
     with st.chat_message("assistant"):
